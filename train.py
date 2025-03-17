@@ -9,39 +9,11 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 from sklearn.model_selection import train_test_split
-from tensorflow.keras.datasets import fashion_mnist
 
 
 # Function to preprocess 
-def preprocess_image_data(images):
-    return np.array([img.flatten() / 255.0 for img in images])
-
-# Loading the Fashion MNIST dataset
-(train_data, train_labels), (test_data, y_test_data) = fashion_mnist.load_data()
-
-# Preprocessing the training and test datasets
-x_total_train_processed = preprocess_image_data(train_data)
-x_test_processed = preprocess_image_data(test_data)
-
-# Split the training data into training and validation sets randomly
-train_validation_split_ratio = 0.9  # 90% training, 10% validation
-x_train_final, x_validation_final, y_train_final, y_validation_final = train_test_split(
-    x_total_train_processed, train_labels, train_size=train_validation_split_ratio, random_state=42
-)
-
-flattened_test_data = []
-
-
-for i in range(0, len(test_data)):
-    flattened_test_data.append(test_data[i].flatten()/255.0)
-
-split_index = int(len(x_total_train_processed) * train_validation_split_ratio)
-
-x_train_final = x_total_train_processed[:split_index]
-y_train_final = train_labels[:split_index] 
-x_validation_final = x_total_train_processed[split_index:]
-y_validation_final = train_labels[split_index:]
-
+def preprocess_image_data(data):
+    return np.array([i.flatten() / 255.0 for i in data])
 
 class NeuralNetwork:
     def __init__(self, input_neurons, output_neurons, config):
@@ -671,7 +643,6 @@ class NeuralNetwork:
         plt.ylabel('True Class')
         plt.savefig('confusion_matrix.png')
         wandb.log({"Confusion Matrix": wandb.Image('confusion_matrix.png')})
-        plt.show()
 
 
     # Method to update model parameters
@@ -708,27 +679,27 @@ def parse_args():
 import wandb
 
 def main():
-    args = parse_args()
+    arguments = parse_args()
 
     # Update hyperparameter defaults with command-line arguments
     hyperparameter_defaults = {
-        "epochs": args.epochs,
-        "hidden_layers": args.num_layers,
-        "hl_size": args.hidden_size,
-        "weight_decay": args.weight_decay,
-        "learning_rate": args.learning_rate,
-        "optimizer": args.optimizer,
-        "batch_size": args.batch_size,
-        "initialization": args.weight_init,
-        "activation": args.activation,
-        "loss": args.loss,
-        "wandb_project": args.wandb_project,
-        "wandb_entity": args.wandb_entity,
-        "momentum_beta": args.momentum,
-        "rms_beta": args.beta,
-        "beta1": args.beta1,
-        "beta2": args.beta2,
-        "eps": args.epsilon
+        "epochs": arguments.epochs,
+        "hidden_layers": arguments.num_layers,
+        "hl_size": arguments.hidden_size,
+        "weight_decay": arguments.weight_decay,
+        "learning_rate": arguments.learning_rate,
+        "optimizer": arguments.optimizer,
+        "batch_size": arguments.batch_size,
+        "initialization": arguments.weight_init,
+        "activation": arguments.activation,
+        "loss": arguments.loss,
+        "wandb_project": arguments.wandb_project,
+        "wandb_entity": arguments.wandb_entity,
+        "momentum_beta": arguments.momentum,
+        "rms_beta": arguments.beta,
+        "beta1": arguments.beta1,
+        "beta2": arguments.beta2,
+        "eps": arguments.epsilon
     }
 
     # Construct run name using key hyperparameters
@@ -773,7 +744,7 @@ def main():
         )
 
         # Load dataset
-        if args.dataset == "mnist":
+        if arguments.dataset == "mnist":
             (train_data, train_labels), (test_data, test_labels) = mnist.load_data()
         else:
             (train_data, train_labels), (test_data, test_labels) = fashion_mnist.load_data()
