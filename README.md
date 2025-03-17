@@ -13,10 +13,13 @@ I executed the saved train.py file locally in the windows cmd
 2 . We can run the train.py in multiple ways if we just run train.py it will use the default parameters to execue with the project name **CS24M027_Deep_Learning_Assignment_1** and the sweep name **CS24M027**
 3 . We can additionaly run it with the different parameters as we wish accordingly
 
-**This was screenshot from my CMD in my laptop this was one way to run train.py**
+**This was screenshot from my CMD in my laptop, This was one of the way to run train.py**
 
 ![image](https://github.com/user-attachments/assets/d4c87bc1-f61d-41b5-9119-3a3f796adc4e)
 
 
 
+**This was another one way to run train.py for our own customized projectName**
+
+![image](https://github.com/user-attachments/assets/2f0bfdb0-b3f5-4b74-9f86-1570f793f58b)
 
