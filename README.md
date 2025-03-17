@@ -4,9 +4,9 @@ This submission consists of two key files for my DA6401 Deep Learning assignment
 
 **You can view my report for the assignment following this link**
 
-https://wandb.ai/m_dhamu2908/Deep_Learning_Assignment/reports/DA6401-Assignment-1--VmlldzoxMTgxNjkxNQ
+https://api.wandb.ai/links/m_dhamu2908/28xakebv
 
- It includes two key files: one for running hyperparameter sweeps to experiment with different configurations and another for executing the model using default parameters. 
+It includes two key files: one for running hyperparameter sweeps to experiment with different configurations and another for executing the model using default parameters. 
  After conducting the sweeps, I ran the model with default parameters using a command-line argument in the train.py file, ensuring a controlled comparison of results.
 
 **Steps to execute train.py file**
